@@ -39,18 +39,19 @@ export default function Trainings() {
     ]); 
 
 
+    const fetchTrainings = () => {
+        fetch("https://traineeapp.azurewebsites.net/gettrainings")
+        .then(response => response.json())
+        .then(data => setTrainings(data))
+        .catch(error => {
+          console.error("Error fetching trainings:", error);
+        });
+    }
+
     useEffect(() => {
         fetchTrainings();
     }, []);
 
-
-
-    const fetchTrainings = () => {
-        fetch(import.meta.env.VITE_API_URL + "/gettrainings")
-        .then(response => response.json())
-        .then(data => setTrainings(data))
-        .catch(err => console.err(err))
-    }
 
 
     const deleteTraining = (id) => {

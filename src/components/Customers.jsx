@@ -50,7 +50,7 @@ export default function Customers() {
 
 
     const fetchCustomers = () => {
-        fetch(import.meta.env.VITE_API_URL + '/api/customers')
+        fetch("https://traineeapp.azurewebsites.net/api/customers")
         .then(response => response.json())
         .then(data => setCustomers(data.content))
         .catch(err => console.err(err))
