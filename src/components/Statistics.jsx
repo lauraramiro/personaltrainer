@@ -8,9 +8,9 @@ function Statistics(){
     const [trainings, setTrainings] = useState([]);
 
     const fetchTrainings = () => {
-      fetch("https://traineeapp.azurewebsites.net/gettrainings")
+      fetch("https://traineeapp.azurewebsites.net/api/trainings")
         .then(response => response.json())
-        .then(data => setTrainings(data))
+        .then(data => setTrainings(data.content))
         .catch(error => {
           console.error("Error fetching trainings:", error);
         });
