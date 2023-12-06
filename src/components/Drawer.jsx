@@ -21,9 +21,12 @@ import ListItemText from '@mui/material/ListItemText';
 
 import Customers from './Customers';
 import Trainings from './Trainings';
+import TrainingCalendar from './Calendar';
 
 import AccountBoxIcon from '@mui/icons-material/AccountBox';
 import DirectionsRunIcon from '@mui/icons-material/DirectionsRun';
+import EventIcon from "@mui/icons-material/Event";
+//import BarChartIcon from "@mui/icons-material/BarChart";
 
 const drawerWidth = 240;
 
@@ -76,7 +79,7 @@ const DrawerHeader = styled('div')(({ theme }) => ({
 
 export default function PersistentDrawer() {
   const theme = useTheme();
-  const [selectedPage, setSelectedPage] = useState('Trainings');
+  const [selectedPage, setSelectedPage] = useState('Customers');
   const [open, setOpen] = useState(false);
 
 
@@ -84,8 +87,8 @@ export default function PersistentDrawer() {
   const Sidebar = () => {
     const menuItems = [
         { text: 'Customers', icon: <AccountBoxIcon /> },
-        { text: 'Trainings', icon: <DirectionsRunIcon /> },/*
-        { text: 'Calendar', icon: <EventIcon /> },
+        { text: 'Trainings', icon: <DirectionsRunIcon /> },
+        { text: 'Calendar', icon: <EventIcon /> },/*
         { text: 'Statistics', icon: <AnalyticsIcon /> },*/
     ];
 
@@ -124,7 +127,7 @@ export default function PersistentDrawer() {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            Persistent drawer
+            Personal Trainer
           </Typography>
         </Toolbar>
       </AppBar>
@@ -154,6 +157,7 @@ export default function PersistentDrawer() {
         
         {selectedPage === 'Customers' && <Customers />}
         {selectedPage === 'Trainings' && <Trainings />}
+        {selectedPage === 'Calendar' && <TrainingCalendar />}
       </Main>
     </Box>
   );
