@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip } from 'recharts';
+import { BarChart, Bar, ResponsiveContainer, XAxis, YAxis, Tooltip, CartesianGrid } from 'recharts';
 import { groupBy, sumBy } from 'lodash';
 
 
 function Statistics(){
 
     const [trainings, setTrainings] = useState([]);
-    const [groupedTrainings, setGroupedTrainings] = useState([]);
 
     const fetchTrainings = () => {
       fetch("https://traineeapp.azurewebsites.net/gettrainings")
@@ -16,14 +15,16 @@ function Statistics(){
           console.error("Error fetching trainings:", error);
         });
 
+    }
+
+    const groupActivities = () => {
       const activites = groupBy(trainings, 'activity');
       const newData = Object.keys(activites).map((activity) => ({
         name: activity,
         value: sumBy(activites[activity], 'duration'),
       }));
-
-      setGroupedTrainings(newData);
-      console.log(groupedTrainings);
+      
+      return newData;
     }
 
     useEffect(() => fetchTrainings(), [])
@@ -32,12 +33,13 @@ function Statistics(){
         <>
             <h2>Statistics</h2>
             <ResponsiveContainer width="100%" height={400}>
-                <BarChart width={150} height={40} data={groupedTrainings}  margin={{
+                <BarChart width={150} height={40} data={groupActivities()}  margin={{
                     top: 5,
                     right: 30,
                     left: 20,
                     bottom: 5,
                 }}>
+                  <CartesianGrid strokeDasharray="3 3" />
                     <XAxis dataKey="name" />
                     <YAxis label={{ value: 'Duration (min)', angle: -90, position: 'insideLeft', offset: -10}} />
                     <Tooltip />
