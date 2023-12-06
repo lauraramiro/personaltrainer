@@ -34,7 +34,10 @@ export default function Trainings() {
         },
         {field: 'duration', sortable: true, filter: true, headerName: 'Duration (min)'},
         {headerName: 'Customer', sortable: true, filter: true, cellRenderer: (params) => {
-            return `${params.data.customer.firstname} ${params.data.customer.lastname}`;
+            if (params.customer !== null) {
+                return `${params.data.customer.firstname} ${params.data.customer.lastname}`;
+            }
+            
         }},
     ]); 
 
@@ -74,6 +77,7 @@ export default function Trainings() {
 
     return (
         <div className="ag-theme-material" style={{ width: 1000, height:1000 }}>
+            <h2>Trainings</h2>
             <AgGridReact
                 rowData={trainings}
                 animateRows={true}

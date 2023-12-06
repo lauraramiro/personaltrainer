@@ -1,13 +1,14 @@
-import { useState, useEffect, useCallback, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; 
 import 'ag-grid-community/styles/ag-theme-material.css';
 import AddCustomer from "./AddCustomer";
 import AddTraining from './AddTraining';
 import EditCustomer from './EditCustomer';
-import { IconButton, Button } from '@mui/material';
+import { IconButton } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 //import { DataGrid } from '@mui/x-data-grid';
+import CSV from './CSV';
 
 
 
@@ -16,7 +17,6 @@ export default function Customers() {
     const [customers, setCustomers] = useState([]);
     // eslint-disable-next-line no-unused-vars
     const [open, setOpen] = useState(false);
-    const gridRef = useRef();
 
 
 
@@ -72,35 +72,18 @@ export default function Customers() {
 		}
 	};
 
-	const getParams = () => {
-		return {
-			columnKeys: [
-				"firstname",
-				"lastname",
-				"email",
-				"phone",
-				"streetaddress",
-				"postcode",
-				"city",
-			],
-
-			suppressQuotes: true,
-		};
-	};
-
-    const onBtnExport = useCallback(() => {
-		gridRef.current.api.exportDataAsCsv(getParams());
-	}, []);
-
 
     return (
         
         <>   
-			<AddCustomer fetchCustomers={fetchCustomers} /> 
-            <Button size="small" onClick={onBtnExport}>
-					Export
-				</Button>
+			
             <div className="ag-theme-material" style={{ width: 1200, height: 600 }}>
+            <h2>Customers</h2>
+                <div style={{ display: 'flex', justifyContent: 'flex-end'}}>
+                    <AddCustomer fetchCustomers={fetchCustomers} /> 
+                    <CSV customers={customers}/>
+                </div>
+                
                 <AgGridReact
                     rowData={customers}
                     animateRows={true}

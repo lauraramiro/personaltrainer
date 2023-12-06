@@ -10,9 +10,7 @@ export default function TrainingCalendar() {
     const getTrainings = () => {
       fetch("https://traineeapp.azurewebsites.net/gettrainings")
         .then(response => response.json())
-        .then(data => {
-          setTrainings(data);
-        })
+        .then(data => setTrainings(data))
         .catch(error => {
           console.error("Error fetching trainings:", error);
         });
@@ -36,15 +34,16 @@ export default function TrainingCalendar() {
 
     return (
         <div style={{height:'100%'}}>
-        <Calendar
-            localizer={momentLocalizer(moment)}
-            events={events}
-            startAccessor="start"
-            endAccessor="end"
-            defaultView="month"
-            views={["month", "week", "day", "agenda"]}
-            style={{ height: 650 }}     
-        />
+            <h2>Calendar</h2>
+            <Calendar
+                localizer={momentLocalizer(moment)}
+                events={events}
+                startAccessor="start"
+                endAccessor="end"
+                defaultView="month"
+                views={["month", "week", "day", "agenda"]}
+                style={{ height: 650 }}     
+            />
         </div>
     );
 }

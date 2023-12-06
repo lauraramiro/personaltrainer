@@ -7,6 +7,7 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogTitle from "@mui/material/DialogTitle";
 import AddIcon from "@mui/icons-material/Add";
 
+// eslint-disable-next-line react/prop-types
 export default function AddCustomer({ fetchCustomers }) {
 	//States:
 	const [customer, setCustomer] = useState({
