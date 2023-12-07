@@ -16,7 +16,6 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 
-
 import Customers from './Customers';
 import Trainings from './Trainings';
 import TrainingCalendar from './Calendar';
@@ -29,7 +28,7 @@ import BarChartIcon from "@mui/icons-material/BarChart";
 
 const drawerWidth = 240;
 
-
+// Persistent Drawer from MUI documentation
 
 const Main = styled('main', { shouldForwardProp: (prop) => prop !== 'open' })(
   ({ theme, open }) => ({

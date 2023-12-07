@@ -12,7 +12,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 
 // eslint-disable-next-line react/prop-types
 export default function AddTraining({ customerdata }) {
-	//States:
+
 	const [training, setTraining] = useState({
 		activity: "",
 		date: Date,
@@ -22,7 +22,7 @@ export default function AddTraining({ customerdata }) {
 
 	const [open, setOpen] = useState(false);
 
-	//Functions:
+
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -32,24 +32,23 @@ export default function AddTraining({ customerdata }) {
 	};
 
 	const handleSave = () => {
-		fetch(import.meta.env.VITE_API_URL + "/api/trainings", {
+		fetch("https://traineeapp.azurewebsites.net/gettrainings", {
 			method: "POST",
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify(training),
 		})
 			.then((response) => {
 				if (!response.ok)
-					throw new Error("Adding training failed: " + response.statusText);
+					throw new Error("Error adding training: " + response.statusText);
 			})
 			.catch((err) => console.err(err));
 
 		handleClose();
 	};
 
-	//Rendering
+
 	return (
 		<>
-            
 			<Button
 				size="small"
 				color="primary"
@@ -64,9 +63,7 @@ export default function AddTraining({ customerdata }) {
 						margin="dense"
 						label="Activity"
 						value={training.activity}
-						onChange={(e) =>
-							setTraining({ ...training, activity: e.target.value })
-						}
+						onChange={(e) =>setTraining({ ...training, activity: e.target.value })}
 						fullWidth
 						variant="outlined"
 					/>
@@ -75,9 +72,7 @@ export default function AddTraining({ customerdata }) {
 							label="DD/MM/YYYY hh:mm aa"
 							inputFormat="DD/MM/YYYY hh:mm aa"
 							value={training.date}
-							onChange={(value) =>
-								setTraining({ ...training, date: value.toISOString() })
-							}
+							onChange={(value) => setTraining({ ...training, date: value.toISOString() })}
 							fullWidth
 							variant="outlined"
 						/>
@@ -86,9 +81,7 @@ export default function AddTraining({ customerdata }) {
 						margin="dense"
 						label="Duration (min)"
 						value={training.duration}
-						onChange={(e) =>
-							setTraining({ ...training, duration: e.target.value })
-						}
+						onChange={(e) => setTraining({ ...training, duration: e.target.value })}
 						fullWidth
 						variant="outlined"
 					/>

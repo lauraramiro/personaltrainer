@@ -10,7 +10,7 @@ import IconButton from "@mui/material/IconButton";
 import EditIcon from "@mui/icons-material/Edit";
 
 export default function EditCustomer({ customerdata, fetchCustomers }) {
-	//States:
+
 	const [customer, setCustomer] = useState({
 		firstname: "",
 		lastname: "",
@@ -22,17 +22,9 @@ export default function EditCustomer({ customerdata, fetchCustomers }) {
 	});
 	const [open, setOpen] = useState(false);
 
-	//Functions:
+
 	const handleClickOpen = () => {
-		setCustomer({
-			firstname: customer.firstname,
-			lastname: customer.lastname,
-			email: customer.email,
-			phone: customer.phone,
-			streetaddress: customer.streetaddress,
-			postcode: customer.postcode,
-			city: customer.city,
-		});
+		setCustomer(customerdata);
 		setOpen(true);
 	};
 
@@ -48,7 +40,7 @@ export default function EditCustomer({ customerdata, fetchCustomers }) {
 		})
 			.then((response) => {
 				if (!response.ok)
-					throw new Error("Editing customer failed: " + response.statusText);
+					throw new Error("Error editing data: " + response.statusText);
 
 				fetchCustomers();
 			})
@@ -57,7 +49,6 @@ export default function EditCustomer({ customerdata, fetchCustomers }) {
 		handleClose();
 	};
 
-	//Rendering
 	return (
 		<>
 			<IconButton
@@ -76,69 +67,63 @@ export default function EditCustomer({ customerdata, fetchCustomers }) {
 						margin="dense"
 						label="Firstname"
 						value={customer.firstname}
-						onChange={(e) => 
-							setCustomer({ ...customer, firstname: e.target.value })
-						}
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, firstname: e.target.value })
+						}
 					/>
 					<TextField
 						margin="dense"
 						label="Lastname"
 						value={customer.lastname}
-						onChange={(e) =>
-							setCustomer({ ...customer, lastname: e.target.value })
-						}
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, lastname: e.target.value })
+						}
 					/>
 					<TextField
 						margin="dense"
 						label="Email"
-						value={customer.email}
-						onChange={(e) =>
-							setCustomer({ ...customer, email: e.target.value })
-						}
+						value={customer.email}						
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, email: e.target.value })
+						}
 					/>
 					<TextField
 						margin="dense"
 						label="Phone"
-						value={customer.phone}
-						onChange={(e) =>
-							setCustomer({ ...customer, phone: e.target.value })
-						}
+						value={customer.phone}						
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, phone: e.target.value })
+						}
 					/>
 					<TextField
 						margin="dense"
 						label="Streetaddress"
 						value={customer.streetaddress}
-						onChange={(e) =>
-							setCustomer({ ...customer, streetaddress: e.target.value })
-						}
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, streetaddress: e.target.value })
+						}
 					/>
 					<TextField
 						margin="dense"
 						label="Postcode"
-						value={customer.postcode}
-						onChange={(e) =>
-							setCustomer({ ...customer, postcode: e.target.value })
-						}
+						value={customer.postcode}						
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, postcode: e.target.value })
+						}
 					/>
 					<TextField
 						margin="dense"
 						label="City"
-						value={customer.city}
-						onChange={(e) => setCustomer({ ...customer, city: e.target.value })}
+						value={customer.city}						
 						fullWidth
 						variant="standard"
+						onChange={(e) => setCustomer({ ...customer, city: e.target.value })}
 					/>
 				</DialogContent>
 				<DialogActions>

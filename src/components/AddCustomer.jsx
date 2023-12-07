@@ -9,7 +9,7 @@ import AddIcon from "@mui/icons-material/Add";
 
 // eslint-disable-next-line react/prop-types
 export default function AddCustomer({ fetchCustomers }) {
-	//States:
+
 	const [customer, setCustomer] = useState({
 		firstname: "",
 		lastname: "",
@@ -21,7 +21,6 @@ export default function AddCustomer({ fetchCustomers }) {
 	});
 	const [open, setOpen] = useState(false);
 
-	//Functions:
 	const handleClickOpen = () => {
 		setOpen(true);
 	};
@@ -31,7 +30,7 @@ export default function AddCustomer({ fetchCustomers }) {
 	};
 
 	const handleSave = () => {
-		fetch(import.meta.env.VITE_API_URL + "/api/customers", {
+		fetch("https://traineeapp.azurewebsites.net/api/customers", {
 			method: "POST",
 			headers: { "Content-type": "application/json" },
 			body: JSON.stringify(customer),
@@ -47,7 +46,6 @@ export default function AddCustomer({ fetchCustomers }) {
 		handleClose();
 	};
 
-	//Rendering
 	return (
 		<>
 			<Button
@@ -66,76 +64,64 @@ export default function AddCustomer({ fetchCustomers }) {
 						margin="normal"
 						label="Firstname"
 						value={customer.firstname}
-						onChange={(e) =>
-							setCustomer({ ...customer, firstname: e.target.value })
-						}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, firstname: e.target.value })}
 					/>
 					<TextField
 						margin="dense"
 						label="Lastname"
 						value={customer.lastname}
-						onChange={(e) =>
-							setCustomer({ ...customer, lastname: e.target.value })
-						}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, lastname: e.target.value })}
 					/>
 					<TextField
 						margin="dense"
 						label="Email"
 						value={customer.email}
-						onChange={(e) =>
-							setCustomer({ ...customer, email: e.target.value })
-						}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, email: e.target.value })}
 					/>
 					<TextField
 						margin="dense"
 						label="Phone"
 						value={customer.phone}
-						onChange={(e) =>
-							setCustomer({ ...customer, phone: e.target.value })
-						}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, phone: e.target.value })}
 					/>
 					<TextField
 						margin="dense"
 						label="Streetaddress"
 						value={customer.streetaddress}
-						onChange={(e) =>
-							setCustomer({ ...customer, streetaddress: e.target.value })
-						}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, streetaddress: e.target.value })}
 					/>
 					<TextField
 						margin="dense"
 						label="Postcode"
 						value={customer.postcode}
-						onChange={(e) =>
-							setCustomer({ ...customer, postcode: e.target.value })
-						}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, postcode: e.target.value })}
 					/>
 					<TextField
 						margin="dense"
 						label="City"
 						value={customer.city}
-						onChange={(e) => setCustomer({ ...customer, city: e.target.value })}
 						fullWidth
 						variant="standard"
                         size="small"
+						onChange={(e) => setCustomer({ ...customer, city: e.target.value })}
 					/>
 				</DialogContent>
 				<DialogActions>

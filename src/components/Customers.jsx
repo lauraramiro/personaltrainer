@@ -33,17 +33,18 @@ export default function Customers() {
 		},
         {cellRenderer: (params) => (<EditCustomer customerdata={params.data} fetchCustomers={fetchCustomers}/>),width: 60},
         {cellRenderer: (params) => (<AddTraining customerdata={params.data.links[0].href} />), width: 130},
-        {field: 'firstname', sortable: true, filter: true, width: 150},
-        {field: 'lastname', sortable: true, filter: true, width: 150},
+        {headerName: 'First name', field: 'firstname', sortable: true, filter: true, width: 150},
+        {headerName: 'Last name', field: 'lastname', sortable: true, filter: true, width: 150},
         {field: 'email', sortable: true, filter: true},
         {field: 'phone', sortable: true, filter: true, width: 150},
-        {field: 'streetaddress', sortable: true, filter: true},
+        {headerName: 'Address', field: 'streetaddress', sortable: true, filter: true},
         {field: 'postcode', sortable: true, filter: true, width: 130},
         {field: 'city', sortable: true, filter: true,  width: 150},
         
 		
 		
     ]); 
+
 
     useEffect(() => fetchCustomers, []);
 
@@ -94,19 +95,6 @@ export default function Customers() {
                     editType='none'
                 />
             </div>
-        </>/*
-        <div style={{ height: 400, width: '100%'}}>
-            <DataGrid
-                rows={customers}
-                columns={columnDefs}
-                initialState={{
-                    pagination: {
-                        paginationModel: {page: 0, pageSize: 5},
-                    },
-                }}
-                pageSizeOptions={[5, 10]}
-                checkboxSelection
-            />
-        </div>*/
+        </>
     );
 }

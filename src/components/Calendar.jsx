@@ -7,7 +7,7 @@ export default function TrainingCalendar() {
 
     const [trainings, setTrainings] = useState([]);
 
-    const getTrainings = () => {
+    const fetchTrainings = () => {
       fetch("https://traineeapp.azurewebsites.net/gettrainings")
         .then(response => response.json())
         .then(data => setTrainings(data))
@@ -29,7 +29,7 @@ export default function TrainingCalendar() {
     });
 
     useEffect(() => {
-        getTrainings();
+        fetchTrainings();
     }, [])    
 
     return (
