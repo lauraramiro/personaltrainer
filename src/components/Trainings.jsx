@@ -3,6 +3,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; 
 import 'ag-grid-community/styles/ag-theme-material.css';
 import * as dayjs from 'dayjs';
+//import { format, parse } from 'date-fns';
 import { IconButton, Snackbar } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
 
@@ -31,6 +32,10 @@ export default function Trainings() {
         {field: 'activity', sortable: true, filter: true, headerName: 'Activity'},
         {field: 'date', sortable: true, filter: true, headerName: 'Date', valueFormatter: (params) => 
             dayjs(params.data.date).format("DD.MM.YYYY hh:mm")
+            /*{   
+                parse(params.data.date, 'dd-MM-yyyy hh:mm', new Date())
+                format(Date, "DD-MM-YYYY hh:mm")
+            }*/
         },
         {field: 'duration', sortable: true, filter: true, headerName: 'Duration (min)'},
         {headerName: 'Customer', sortable: true, filter: true, cellRenderer: (params) => {
