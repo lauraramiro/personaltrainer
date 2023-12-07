@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css'; 
 import 'ag-grid-community/styles/ag-theme-material.css';
-import * as dayjs from 'dayjs';
+import dayjs from 'dayjs';
 //import { format, parse } from 'date-fns';
 import { IconButton, Snackbar } from '@mui/material';
 import DeleteIcon from "@mui/icons-material/Delete";
