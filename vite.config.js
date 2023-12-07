@@ -9,4 +9,6 @@ export default defineConfig({
     globals: true,
     environment: 'jsdom',
     },
+    chunkSizeWarningLimit: 1000, 
+    minify: 'esbuild',
 })
